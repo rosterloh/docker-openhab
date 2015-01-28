@@ -7,15 +7,15 @@ MAINTAINER Richard Osterloh <richard.osterloh@gmail.com>
 
 RUN apt-get update && apt-get install -y \
     unzip \
-    oracle-java7-jdk \
     supervisor \
+    wget \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Download and install Oracle JDK
 # For direct download see: http://stackoverflow.com/questions/10268583/how-to-automate-download-and-installation-of-java-jdk-on-linux
-#RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk-8u33-linux-arm-vfp-hflt.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u33-b05/jdk-8u33-linux-arm-vfp-hflt.tar.gz
-#RUN tar -zxC /opt -f /tmp/jdk-8u33-linux-arm-vfp-hflt.tar.gz
-#RUN ln -s /opt/jdk1.8.0_33 /opt/jdk8
+RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk-8u33-linux-arm-vfp-hflt.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u33-b05/jdk-8u33-linux-arm-vfp-hflt.tar.gz
+RUN tar -zxC /opt -f /tmp/jdk-8u33-linux-arm-vfp-hflt.tar.gz
+RUN ln -s /opt/jdk1.8.0_33 /opt/jdk8
 
 # Download Openhab 2.0.0
 ADD https://github.com/openhab/openhab2/releases/download/2.0.0-alpha1/distribution-2.0.0-alpha1-minimal-runtime.zip /tmp/distribution-2.0.0-alpha1-minimal-runtime.zip
